@@ -4,9 +4,9 @@ import { fileURLToPath } from "url";
 import next from "next";
 import initSocket from "./app/lib/socket.ts";
 
-const dev = true;
-const hostname = "localhost";
-const port = 3000;
+const dev = process.env.NODE_ENV !== 'production';
+const hostname = process.env.HOST || "localhost";
+const port =  process.env.PORT ? parseInt(process.env.PORT) : 3000;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
