@@ -43,7 +43,7 @@ export default function Form({ conversationId, sender,receiverName }: { conversa
 
     return (
         <form onSubmit={handleSubmit} className="flex py-4 justify-center w-full bg-surface border-t-2 border-border">
-            <input type="text" name="message" onChange={handleChange} value={form.message} className="flex-1 border-none outline-none py-3 px-4 bg-surface-hover text-text-primary rounded-full max-w-[500px]"
+            <input type="text" name="message" onChange={handleChange} value={form.message} className="flex-1 border-none outline-none py-3 px-4 bg-surface-hover text-text-primary rounded-full max-w-125"
                 placeholder="Enter your message..."
             />
             <button type="submit" className="bg-accent hover:bg-accent-hover text-white p-3 mx-4 rounded-xl transition-colors" title="Send">

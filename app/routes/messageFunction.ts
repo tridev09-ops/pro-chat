@@ -4,6 +4,7 @@ import Conversation from "@/lib/db/models/conversationModel";
 import Message from "@/lib/db/models/messageModel";
 import { ActionResponse } from "@/lib/actions";
 import { revalidatePath } from "next/cache";
+import { serializeData } from "@/lib/serialize";
 
 export async function fetchMessages(conversationId: string) {
     await connectDb();
@@ -12,9 +13,9 @@ export async function fetchMessages(conversationId: string) {
         const conversation = await Conversation.findById(conversationId).populate({
             path: 'messages',
             model: Message
-        });
+        }).lean();
 
-        return conversation ? conversation.messages : [];
+        return serializeData(conversation ? conversation.messages : []);
     } catch (error) {
         console.error("Error fetching messages:", error);
         return [];

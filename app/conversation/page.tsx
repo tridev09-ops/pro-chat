@@ -1,7 +1,7 @@
 import Form from "@/ui/form";
 import Messages from "@/ui/messages";
 import Link from "next/link";
-import { getCurrentUserId } from "@/lib/auth";
+import { getCurrentUserId } from "@/routes/userFunction";
 import SocketManager from "@/ui/SocketManager";
 import { getUserById } from "@/routes/userFunction";
 

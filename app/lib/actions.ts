@@ -7,10 +7,6 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { revalidatePath } from "next/cache";
-import Conversation from "./db/models/conversationModel";
-import Message from "./db/models/messageModel";
-import { getCurrentUserId } from "./auth";
 
 export type ActionResponse = {
   success: boolean;

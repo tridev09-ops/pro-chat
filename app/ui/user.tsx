@@ -2,7 +2,6 @@
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { createConversation } from "@/routes/conversationFunction";
-
 import EmojiAvatar from "@/ui/EmojiAvatar";
 
 export default function User({
