@@ -5,7 +5,14 @@ import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 import { serializeData } from "@/lib/serialize";
 
-export async function getCurrentUserId() {
+type SerializedUser = {
+    _id: string;
+    name: string;
+    email: string;
+    emoji: string;
+};
+
+export async function getCurrentUserId(): Promise<string | null> {
     const cookieStore = await cookies();
     const token = cookieStore.get("token")?.value;
 
@@ -22,15 +29,15 @@ export async function getCurrentUserId() {
     }
 }
 
-export async function fetchUsers() {
+export async function fetchUsers(): Promise<SerializedUser[]> {
     await connectDB();
     const users = await User.find().select('-password').lean();
-    return serializeData(users);
+    return serializeData<SerializedUser[]>(users);
 }
 
-export async function getUserById(id: string) {
+export async function getUserById(id: string): Promise<SerializedUser | null> {
     await connectDB();
     const user = await User.findById(id).select('-password').lean();
-    return serializeData(user);
+    return serializeData<SerializedUser | null>(user);
 }
 
