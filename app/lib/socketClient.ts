@@ -1,6 +1,6 @@
 import { io } from "socket.io-client";
 
-const socketServerUrl = process.env.SOCKET_SERVER_URL || "http://localhost:4000";
+const socketServerUrl = process.env.SOCKET_SERVER_URL;
 
 // Establish the connection
 const socket = io(socketServerUrl, {
