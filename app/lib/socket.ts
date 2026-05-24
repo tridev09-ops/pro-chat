@@ -1,7 +1,7 @@
 import { Server } from "socket.io";
-import connectDb from "./db/db.ts";
-import Conversation from "./db/models/conversationModel.ts";
-import Message from "./db/models/messageModel.ts";
+import connectDb from "@/lib/db/db.ts";
+import Conversation from "@/lib/db/models/conversationModel.ts";
+import Message from "@/lib/db/models/messageModel.ts";
 
 const sendMessage = async (messageObj: {
     conversationId: string;
@@ -38,7 +38,7 @@ const sendMessage = async (messageObj: {
 const initSocket = (server: any) => {
     const io = new Server(server, {
         cors: {
-            origin: "*",
+            origin:  ["http://localhost:3000", "https://pro-chat-omega.vercel.app"],
             methods: ["GET", "POST"]
         }
     });

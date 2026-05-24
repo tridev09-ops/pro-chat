@@ -1,8 +1,7 @@
 export const getTime = (timeStamp: string) => {
     const dt = new Date(timeStamp)
-    const timeStr = dt.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })
-
-    return timeStr
+    const timeString = dt.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })
+    return timeString
 }
 
 export const getDate = (timeStamp: string) => {
@@ -10,7 +9,6 @@ export const getDate = (timeStamp: string) => {
     const day = dt.getDate()
     const month = dt.getMonth()
     const year = dt.getFullYear()
-
     const monthArr = [
         'Jan',
         'Feb',
@@ -25,5 +23,6 @@ export const getDate = (timeStamp: string) => {
         'Nov',
         'Dec'
     ]
-    return `${day} ${monthArr[month]} ${year}`
+    const dateString = `${day} ${monthArr[month]} ${year}`
+    return dateString
 }

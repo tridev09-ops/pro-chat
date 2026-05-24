@@ -1,7 +1,8 @@
-/**
+/*
  * Convert MongoDB documents to plain JSON serializable objects
  * This solves the "Objects with toJSON methods are not supported" error
  */
+
 export function serializeData<T>(data: any): T {
   if (data === null || data === undefined) {
     return data;
