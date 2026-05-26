@@ -4,7 +4,7 @@ import socket from "@/lib/socketClient";
 
 export default function SocketManager({ name, userId }: { name: string; userId?: string }) {
   useEffect(() => {
-    if (!name) return;
+    if (!name || !socket) return;
 
     const onConnect = () => {
       socket.emit("set user", { name, userId });

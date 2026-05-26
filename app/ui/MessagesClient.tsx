@@ -58,7 +58,7 @@ export default function MessagesClient({
   }, [initialMessages]);
 
   useEffect(() => {
-    if (!conversationId) return;
+    if (!conversationId || !socket) return;
 
     const handler = (payload: {
       conversationId?: string;
