@@ -4,10 +4,13 @@ import socket from "@/lib/socketClient";
 
 export default function SocketManager({ name, userId }: { name: string; userId?: string }) {
   useEffect(() => {
-    if (!name || !socket) return;
+    if (!name) return;
+
+    const s = socket;
+    if (!s) return;
 
     const onConnect = () => {
-      socket.emit("set user", { name, userId });
+      s.emit("set user", { name, userId });
     };
 
     const onOnlineUsers = (userIds: string[]) => {
@@ -16,16 +19,16 @@ export default function SocketManager({ name, userId }: { name: string; userId?:
       );
     };
 
-    socket.on("connect", onConnect);
-    socket.on("users-online", onOnlineUsers);
+    s.on("connect", onConnect);
+    s.on("users-online", onOnlineUsers);
 
-    if (socket.connected) {
+    if (s.connected) {
       onConnect();
     }
 
     return () => {
-      socket.off("connect", onConnect);
-      socket.off("users-online", onOnlineUsers);
+      s.off("connect", onConnect);
+      s.off("users-online", onOnlineUsers);
     };
   }, [name, userId]);
 

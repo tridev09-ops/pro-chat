@@ -58,7 +58,10 @@ export default function MessagesClient({
   }, [initialMessages]);
 
   useEffect(() => {
-    if (!conversationId || !socket) return;
+    if (!conversationId) return;
+
+    const s = socket;
+    if (!s) return;
 
     const handler = (payload: {
       conversationId?: string;
@@ -77,9 +80,9 @@ export default function MessagesClient({
       ]);
     };
 
-    socket.on("chat message", handler);
+    s.on("chat message", handler);
     return () => {
-      socket.off("chat message", handler);
+      s.off("chat message", handler);
     };
   }, [conversationId]);
 
